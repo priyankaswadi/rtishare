@@ -113,9 +113,12 @@
                 . "(SELECT rti_application.ID,rti_application.Title,SUM(rtitags.relevance*4) FROM rti_application, rtitags, search "
                 . "WHERE rti_application.ID=rtitags.rtiid AND rtitags.tagname LIKE CONCAT('%', search.word, '%')GROUP BY RTIID "
                 . "UNION "
-                . "SELECT rti_application.ID,rti_application.Title,MATCH(Title,Summary) AGAINST('{$tags}' WITH QUERY EXPANSION) "
-                . "AS RELEVANCE FROM rti_application WHERE MATCH(Title,Summary) AGAINST('{$tags}' WITH QUERY EXPANSION) "
-                . "ORDER BY 3 DESC) rti_application";
+                . "SELECT rti_application.ID,rti_application.Title,MATCH(Title) AGAINST('{$tags}' WITH QUERY EXPANSION) "
+                . "AS RELEVANCE FROM rti_application WHERE MATCH(Title) AGAINST('{$tags}' WITH QUERY EXPANSION) "
+                . "UNION "
+                . "SELECT rti_application.ID,rti_application.Title,MATCH(Summary) AGAINST('{$tags}' WITH QUERY EXPANSION)*0.5 "
+                . "AS RELEVANCE FROM rti_application WHERE MATCH(Summary) AGAINST('{$tags}' WITH QUERY EXPANSION)*0.5 "                
+                . "HAVING RELEVANCE > 0.5 ORDER BY 3 DESC) rti_application";
         $result = mysqli_query($connection,$query);
         confirm_query($result);
         return $result;
@@ -555,7 +558,10 @@
     
     function find_popular_rtis_for_state($state){
         global $connection;
-       	$query = "SELECT * FROM rti_application WHERE State='{$state}' ORDER BY PageViewCount DESC LIMIT 5";
+       	//$query = "SELECT * FROM rti_application WHERE State='{$state}' ORDER BY PageViewCount DESC LIMIT 5";
+        $query="SELECT * FROM rti_application WHERE ID IN (SELECT rtitags.RTIID FROM rtitags "
+                . "JOIN (SELECT * FROM rtitags WHERE rtitags.TagName='{$state}') x on x.RTIID = rtitags.RTIID "
+                . "AND rtitags.TagName!='{$state}') ORDER BY PageViewCount DESC LIMIT 5";
     	$result = mysqli_query($connection,$query);
         confirm_query($result);
         return $result;
@@ -563,11 +569,13 @@
     
     function find_total_rtis_for_state($state){
         global $connection;
-       	$query = "SELECT COUNT(ID) FROM rti_application WHERE State='{$state}' ORDER BY State LIMIT 1";
+       	//$query = "SELECT COUNT(ID) FROM rti_application WHERE State='{$state}' ORDER BY State LIMIT 1";
+        $query = "SELECT COUNT(RTIID) FROM rtitags WHERE TagName='{$state}' LIMIT 1";
     	$result = mysqli_query($connection,$query);
         confirm_query($result);
         if($row = mysqli_fetch_assoc($result)){
-            return $row['COUNT(ID)'];
+            //return $row['COUNT(ID)'];
+            return $row['COUNT(RTIID)'];
         }
         else{
             return null;
@@ -655,9 +663,12 @@
                 . "(SELECT rti_application.ID,rti_application.Title,rti_application.Summary, rti_application.FilingDate, SUM(rtitags.relevance*4) FROM rti_application, rtitags, search "
                 . "WHERE rti_application.ID=rtitags.rtiid AND rtitags.tagname LIKE CONCAT('%', search.word, '%')GROUP BY RTIID "
                 . "UNION "
-                . "SELECT rti_application.ID,rti_application.Title,rti_application.Summary,rti_application.FilingDate,MATCH(Title,Summary) AGAINST('{$tags}' WITH QUERY EXPANSION) "
-                . "AS RELEVANCE FROM rti_application WHERE MATCH(Title,Summary) AGAINST('{$tags}' WITH QUERY EXPANSION) "
-                . "ORDER BY 3 DESC) rti_application LIMIT $start,$records_per_page";
+                . "SELECT rti_application.ID,rti_application.Title,rti_application.Summary,rti_application.FilingDate,MATCH(Title) AGAINST('{$tags}' WITH QUERY EXPANSION) "
+                . "AS RELEVANCE FROM rti_application WHERE MATCH(Title) AGAINST('{$tags}' WITH QUERY EXPANSION) "
+                . "UNION "
+                . "SELECT rti_application.ID,rti_application.Title,rti_application.Summary,rti_application.FilingDate,MATCH(Summary) AGAINST('{$tags}' WITH QUERY EXPANSION)*0.5 "
+                . "AS RELEVANCE FROM rti_application WHERE MATCH(Summary) AGAINST('{$tags}' WITH QUERY EXPANSION)*0.5 "                
+                . "HAVING RELEVANCE > 0.5 ORDER BY 5 DESC) rti_application LIMIT $start,$records_per_page";
         $result = mysqli_query($connection,$query);
         confirm_query($result);
         return $result;

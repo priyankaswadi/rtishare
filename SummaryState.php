@@ -72,6 +72,7 @@ if ($state) {
                 </div>
             </div>
         </form>
+        <?php InsertFooter(400) ?>    
     </body>
     <?php InsertCommonJS() ?>    
 </html>

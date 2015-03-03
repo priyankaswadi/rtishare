@@ -43,14 +43,22 @@ if (isset($_POST["submit"])) {
         <?php InsertNavbar(); ?>
         <form id="forgotpass" method="post">
                         <div class="bs-docs-header" id="header"><div class="container"><h3></h3></div></div>    
-            <div id="content" class="container">
-                Forgot Password
-                <p><input name="email" type="email" value="" placeholder="Email ID" title="Enter your email here" id="email" required="" autofocus></p>
-                <input type="submit" value="Submit" name="submit"/><br /><br />
-                <?php if (!empty($errStr)) {echo($errStr);} ?>
+                        
+            <div id="content" class="container">                
+                Please enter your email to receive temporary password:<br/><br />
+                <div class="container col-sm-4">                     
+                    <div class="form-group">
+                        <input name="email" type="email" value="" placeholder="Email ID" title="Enter your email here" id="email" required="" autofocus class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" name="submit" class="btn btn-success btn-lg"/><br /><br />
+                    </div>
+                    <?php if (!empty($errStr)) {echo($errStr);} ?>
+                </div>
             </div>
 
         </form>
+        <?php InsertFooter(600) ?>    
     </body>
     <?php InsertCommonJS() ?>
 </html>

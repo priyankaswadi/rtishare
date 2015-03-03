@@ -1,7 +1,7 @@
 <?php
 
 // Function in include navigation bar in heading
-function InsertNavbar() {
+function InsertNavbar($include_header = true) {
     $base_name = basename($_SERVER['REQUEST_URI']);
     $links = NavbarLink($base_name, 'index.php', 'Home');
     $links .= NavbarLink($base_name, 'upload.php', 'Upload');
@@ -30,8 +30,8 @@ $links
                     </ul>
             
 EOT;
-
-    include_once ('signinheader.php');
+    if($include_header == true)
+        include_once ('signinheader.php');
 
     print <<<EOT
                 </div>
@@ -199,7 +199,7 @@ function InsertPagedRTITable($result, $includedetails = True,$title=null) {
                     . "\"><b>" . $rti['Title'] . "</b></a>");
             if ($includedetails == True) {
                 $html.= ( "<br/>" . substr($rti['Summary'], 0, 100) . "</td>"
-                        . "<td>" . $rti['FilingDate'] );
+                        . "<td class='no_text_wrap'>" . date('d-M-Y',strtotime($rti['FilingDate'])));
             };
             $html.= "</td>";
             $html.= "</tr>";
@@ -221,8 +221,14 @@ function CreateHeaderFromUrltags() {
     return($headertext);
 }
 
-function InsertFooter(){
-    echo '     <div id="footer"> © RTISHARE.org. This is a work under progress. Please <a href="contactus.php">contact us </a> if you would like to know more.</div></div> ';
+function InsertFooter($margin_top = 0){ //$margin_top pushes footer down so that it remains at the bottom. Value changes depending on content.
+        echo '<div class="push" style="margin-top:'.$margin_top.'px"></div>';
+        echo '<footer class="footer">
+            <div class="container">
+                <p class="text-muted">&copy; RTISHARE.org. This is a work under progress. Please <a href="contactus.php" target="_blank">contact us</a> if you would like to know more.</p>
+                <a href="disclaimer.php" target="_blank">Disclaimer</a>
+            </div>
+        </footer>';
 }
 
 ?>

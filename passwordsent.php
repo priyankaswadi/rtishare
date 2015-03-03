@@ -9,7 +9,7 @@
 <html>
     <?php InsertCommonHeader() ?>
     <body>
-        <?php InsertNavbar() ?>
+        <?php InsertNavbar(false) ?>
         <form>
                         <div class="bs-docs-header" id="header"><div class="container"><h3></h3></div></div>    
             <div id="content" class="container">              
@@ -17,6 +17,7 @@
               <a href="login.php">Login </a>to your account using the same.
             </div>        
         </form>
+        <?php InsertFooter(600) ?>    
     </body>
     <?php InsertCommonJS() ?>
 </html>

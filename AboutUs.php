@@ -49,7 +49,7 @@
                 
                 <p>
                 <a href="http://rtishare.org"><strong>RTIshare.org</strong></a> is a website designed to bridge this gap.
-                We intend to run it as a non-profit service, and with an open source (link to our git repo).
+                We intend to run it as a non-profit service, and with an open source.
                 We do not intend to compete with other excellent platforms fueling the RTI revolution, 
                 but merely to help bridge a gap and plant a seed. We hope that it grows and helps 
                 bravehearts everywhere who choose to walk this path.
@@ -60,6 +60,7 @@
                 </div>
             </div> 
         </form>
+        <?php InsertFooter() ?>               
     </body>
     <?php InsertCommonJS() ?>    
 </html>

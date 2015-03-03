@@ -22,6 +22,7 @@
                 </div>
             </div>
         </form>
+        <?php InsertFooter(400) ?>    
     </body>
     <?php InsertCommonJS() ?>
     <?php InsertCustomPagingJS('get_pages_detailed.php') ?>

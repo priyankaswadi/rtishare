@@ -94,6 +94,7 @@
             </div>
             
         </form>
+        <?php InsertFooter(300) ?>    
     </body>
     <?php InsertCommonJS() ?>
     <script src="scripts/detailedindexpagescripts.js"></script>

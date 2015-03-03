@@ -50,25 +50,33 @@ if (isset($_POST["submit"])) {
 <html>
     <?php InsertCommonHeader() ?>
     <body>
-        <?php InsertNavbar() ?>
+        <?php InsertNavbar(false) ?>
         <form id="resetpass" method="post">
             <div class="bs-docs-header" id="header"><div class="container"><h3></h3></div></div>    
-            <div id="content" class="container">             
-                <h1>Reset Password</h1>
-                <p><input name="pass" type="password" value="" placeholder="New Password" title="Password should be minimum 6 characters." id="pass" required="" data-indicator="pwindicator"></p>
-                <div id="pwindicator">
-                    <div class="bar"></div>
-                    <div class="label"></div>
-                </div>
-                <p><input name="pass2" type="password" value="" placeholder="Re-enter new Password" title="Reenter your password again." id="pass2" required="" ></p>
-                <div id="passmatch" class="match"></div><br />
-                <input type="submit" value="Submit" name="submit"/><br /><br />
-                <?php if (!empty($errStr)) {
-                    echo($errStr);
-                } ?>
-            </div>                        
-
+            <div id="content" class="container"> 
+                <div class="container col-sm-4">  
+                    <h1>Reset Password</h1>
+                    <div class="form-group">
+                        <input name="pass" type="password" value="" placeholder="New Password" title="A good password should be atleast 8 characters long." id="pass" required="" data-indicator="pwindicator" class="form-control">
+                    </div>
+                    <div id="pwindicator">
+                        <div class="bar"></div>
+                        <div class="label"></div>
+                    </div>
+                    <div class="form-group">
+                        <input name="pass2" type="password" value="" placeholder="Reenter new Password" title="Reenter your password." id="pass2" required="" class="form-control">
+                    </div>
+                    <div id="passmatch" class="match"></div><br />
+                    <div class="form-group">
+                        <input type="submit" value="Submit" name="submit" class="btn btn-success btn-lg"/><br /><br />
+                    </div>
+                    <?php if (!empty($errStr)) {
+                        echo($errStr);
+                    } ?>
+                </div>                        
+            </div>
         </form>        
+        <?php InsertFooter(300) ?>               
     </body>
 <?php InsertCommonJS() ?>
     <script>

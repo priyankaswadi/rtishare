@@ -62,7 +62,7 @@ if (isset($_POST['login'])) {
 <html lang="en">
     <?php InsertCommonHeader() ?>
     <body>
-        <?php InsertNavbar(); ?>
+        <?php InsertNavbar(false); ?>
 
         <form id="login" method="post">
             <!--Empty header below to headline the body-->
@@ -113,6 +113,7 @@ if (isset($_POST['login'])) {
             </div>
 
         </form>
+        <?php InsertFooter(300) ?>    
     </body>
 <?php InsertCommonJS() ?>
 </html>

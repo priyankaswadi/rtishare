@@ -91,8 +91,8 @@
                         }
                         if(error1_flag===0){
                             $("#page1").hide();                 
-                            $("#page2").show("slow");                 
-                            animateProgress(parseInt($(this).data(25)));
+                            $("#page2").show();                 
+                            animateProgress(parseInt($(this).data()));
                             $('#progressvalue').text('2 of 4');
                         }                                    
                     });
@@ -135,10 +135,18 @@
                                 ErrorMsg("Enter valid response date");
                             }
                         }
+                        var dateFirst = filingdate.split('-');
+                        var dateSecond = responsedate.split('-');
+                        var fdate = new Date(dateFirst[2], dateFirst[1], dateFirst[0]); //Year, Month, Date
+                        var rdate = new Date(dateSecond[2], dateSecond[1], dateSecond[0]);
+                        if(fdate>rdate){
+                                error2_flag = 1;
+                                ErrorMsg("Response Date should be later than filing date.");
+                        }
                         if (error2_flag===0){
                             $("#page2").hide();                 
-                            $("#page3").show("slow");               
-                            animateProgress(parseInt($(this).data(25)));
+                            $("#page3").show();               
+                            animateProgress(parseInt($(this).data()));
                             $('#progressvalue').text('3 of 4');
                         }                        
             
@@ -155,13 +163,37 @@
                         }
                         if (error3_flag===0){
                             $("#page3").hide();                 
-                            $("#page4").show("slow");               
-                            animateProgress(parseInt($(this).data(25)));
+                            $("#page4").show();               
+                            animateProgress(parseInt($(this).data()));
                             $('#progressvalue').text('4 of 4');
                         }              
                             
                     });
             
+            $("#back1").click(
+                function()
+                    {
+                        $("#page2").hide();                 
+                        $("#page1").show();                 
+                        animateProgress_back(parseInt($(this).data()));
+                        $('#progressvalue').text('1 of 4');
+                    });            
+            $("#back2").click(
+                function()
+                    {
+                        $("#page3").hide();                 
+                        $("#page2").show();                 
+                        animateProgress_back(parseInt($(this).data()));
+                        $('#progressvalue').text('2 of 4');
+                    });                            
+            $("#back3").click(
+                function()
+                    {
+                        $("#page4").hide();                 
+                        $("#page3").show();                 
+                        animateProgress_back(parseInt($(this).data()));
+                        $('#progressvalue').text('3 of 4');
+                    });                                
             $("#anonno").click(
                 function()
                     {                        
@@ -308,6 +340,16 @@
             function animateProgress() {
                 var currValue = $("#progress").val();
                 var toValue = currValue + 25;
+    
+                toValue = toValue < 0 ? 0 : toValue;
+                toValue = toValue > 100 ? 100 : toValue;
+
+                $("#progress").animate({'value': toValue}, 500);
+            }
+            // animate progress by -25 each time back is clicked
+            function animateProgress_back() {
+                var currValue = $("#progress").val();
+                var toValue = currValue - 25;
     
                 toValue = toValue < 0 ? 0 : toValue;
                 toValue = toValue > 100 ? 100 : toValue;

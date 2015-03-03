@@ -70,6 +70,7 @@
             ?>
             </div>
         </form>
+        <?php InsertFooter(300) ?>    
     </body>
     <?php InsertCommonJS() ?>    
 </html>

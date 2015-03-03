@@ -24,6 +24,7 @@ if (!$_SESSION) { //in case of logout when all session variables are destroyed, 
                 </div>
             </div>
         </form>
+        <?php InsertFooter(400) ?>    
     </body>
     <?php InsertCommonJS() ?>
     <?php InsertCustomPagingJS('get_pages.php') ?>    

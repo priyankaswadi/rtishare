@@ -381,8 +381,12 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
                             </div></div>
-
                         <div class="form-group">
+                            <div class="col-sm-2">
+                                <button class="form-control btn-success input-lg btn-lg" type="button" id="back1"/>
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back 
+                                </button>   
+                            </div>
                             <div class="col-sm-2">
                                 <button class="form-control btn-success  input-lg btn-lg" type="button" id="next2"/>
                                 Next <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
@@ -426,10 +430,18 @@ if (isset($_POST["submit"])) {
                                 <label> Would you like to be contacted by anyone who wants to know more? </label>
                                 <label><input class="radio-inline" type="radio" name="selectcontact" id="contactyes" title="Your email ID used for registration will be provided to interested people." value="1"/> Yes </label>
                                 <label><input class="radio-inline" type="radio" name="selectcontact" id="contactno" checked=1 value="0"/> No</label>        
-                            </div></div>
+                            </div></div>                        
 
-                        <div class="form-group"><div class="col-sm-2">
-                                <button class="form-control col-xs-4 btn-success  input-lg btn-lg" type="button" id="next3"/>Next</button>   
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <button class="form-control btn-success input-lg btn-lg" type="button" id="back2"/>
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back 
+                                </button>   
+                            </div>                            
+                            <div class="col-sm-2">
+                                <button class="form-control col-xs-4 btn-success  input-lg btn-lg" type="button" id="next3"/>
+                                Next <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                                </button>   
                             </div></div>
 
                     </div>
@@ -449,14 +461,21 @@ if (isset($_POST["submit"])) {
                         <input type="hidden" name="fileslist" value="" id="fileslist"/>
 
                         <div class="form-group"><div class="col-sm-2">
+                                <button class="form-control btn-success input-lg btn-lg" type="button" id="back3"/>
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back 
+                                </button>   
+                        </div></div>                       
+
+                        <div class="form-group"><div class="col-sm-2">
                                 <input class="form-control col-xs-4 btn-success input-lg btn-lg" name ="submit" type="submit" value="Submit RTI">
                             </div></div>
 
                     </div>
 
                 </div>                  
-            </form>
-        </div>        
+            </form>            
+        </div>     
+        <?php InsertFooter(300) ?>    
     </body>
     <?php InsertCommonJS() ?>
     <script src="scripts/uploadRTIscripts.js"></script> <!--JQuery code for UploadRTI page -->    

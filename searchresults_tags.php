@@ -26,6 +26,7 @@ session_start();   //need this to access session variables
 
             </div>
         </form>
+        <?php InsertFooter(400) ?>    
     </body>
     <?php InsertCommonJS() ?>
     <?php $tag = filter_input(INPUT_GET, 'tag');

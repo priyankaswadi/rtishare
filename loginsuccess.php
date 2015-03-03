@@ -32,6 +32,7 @@
                 
             </div>        
         </form>
+        <?php InsertFooter(600) ?>    
     </body>
     <?php InsertCommonJS() ?>
 </html>

@@ -22,6 +22,7 @@ session_start();
                 <h3>You may reach us at info.rtishare[at]gmail.com </h3>
             </div>        
         </form>
+        <?php InsertFooter(600) ?>    
     </body>
     <?php InsertCommonJS() ?>
 </html>

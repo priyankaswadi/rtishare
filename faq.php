@@ -196,6 +196,7 @@
 </div>
 
 </div> 
+    <?php InsertFooter() ?>                
     </body>
     <?php InsertCommonJS() ?>    
 </html>

@@ -35,26 +35,37 @@
 <html>
     <?php InsertCommonHeader() ?>
     <body>    
-    <?php InsertNavbar() ?>
+    <?php InsertNavbar(false) ?>
 		
         <form id="signup" method="post">
                         <div class="bs-docs-header" id="header"><div class="container"><h3></h3></div></div>    
-            <div id="content" class="container">             
-                <h1>Sign Up</h1>
-                <p><input name="email" type="email" value="<?php echo $email;?>" placeholder="Email ID" title="Enter your email here" id="email" required="" autofocus></p>
-                <p><input name="pass" type="password" value="" placeholder="Password" title="A good password should be atleast 8 characters long." id="pass" required="" data-indicator="pwindicator"></p>
-                <div id="pwindicator">
-                    <div class="bar"></div>
-                    <div class="label"></div>
+            <div id="content" class="container">  
+                <div class="container col-sm-4">  
+                    <h1>Sign Up</h1>
+                    <div class="form-group">
+                        <input name="email" type="email" value="<?php echo $email;?>" placeholder="Email ID" title="Enter your email here" id="email" required="" autofocus class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <input name="pass" type="password" value="" placeholder="Password" title="A good password should be atleast 8 characters long." id="pass" required="" data-indicator="pwindicator" class="form-control">
+                    </div>
+                    <div id="pwindicator">
+                        <div class="bar"></div>
+                        <div class="label"></div>
+                    </div>
+                    <div class="form-group">
+                        <input name="pass2" type="password" value="" placeholder="Re-enter Password" title="Reenter your password again." id="pass2" required="" class="form-control">
+                    </div>    
+                    <div id="passmatch" class="match"></div><br />
+                    <div class="form-group">
+                        <input type="submit" value="Sign Up" name="submit" class="btn btn-success btn-lg"/>&nbsp;&nbsp;or
+                        <a href="login.php">Login to existing account</a><br /><br />                
+                        <?php echo $html_signup;?>
+                    </div>
                 </div>
-                <p><input name="pass2" type="password" value="" placeholder="Re-enter Password" title="Reenter your password again." id="pass2" required="" ></p>
-                <div id="passmatch" class="match"></div><br />
-                <input type="submit" value="Sign Up" name="submit"/>&nbsp;&nbsp;or
-                <a href="login.php">Login to existing account</a><br /><br />                
-                <?php echo $html_signup;?>
             </div>                        
             
         </form>        
+        <?php InsertFooter(300) ?>    
     </body>
     <?php InsertCommonJS() ?>
     <script>

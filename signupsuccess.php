@@ -21,6 +21,7 @@
                 you have received in your email.
             </div>        
         </form>
+        <?php InsertFooter(600) ?>    
     </body>
     <?php InsertCommonJS() ?>
 </html>
